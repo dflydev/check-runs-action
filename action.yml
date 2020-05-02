@@ -1,0 +1,52 @@
+name: 'GitHub Check Run Collections'
+description: 'Wrapper around the GitHub Checks API'
+author: 'dflydev'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+inputs:
+  token:
+    description: 'your GITHUB_TOKEN'
+    required: true
+  collection:
+    description: 'the name of your check collection'
+    required: false
+  id:
+    description: 'the step ID related to this check'
+    required: false
+  checks:
+    description: 'the checks you want to manage'
+    required: false
+  name:
+    description: 'the name of your check'
+    required: true
+  conclusion:
+    description: 'the conclusion of your check'
+    required: true
+  status:
+    description: 'the status of your check'
+    required: false
+  action_url:
+    description: 'the url to call back to when using `action_required` as conclusion or with `actions`'
+    required: false
+  output:
+    description: 'the output of your check'
+    required: false
+  annotations:
+    description: 'the annotations of your check'
+    required: false
+  images:
+    description: 'the images of your check'
+    required: false
+  actions:
+    description: 'the actions of your check'
+    required: false
+  fail-on-error:
+    description: 'step will fail if specified `conclusion` is not `success` or `neutral`'
+    required: false
+  fail-on-neutral:
+    description: 'step will fail if specified `conclusion` is `neutral`'
+    required: false
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
