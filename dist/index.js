@@ -2011,8 +2011,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const Inputs = __importStar(__webpack_require__(615));
+const request_1 = __importDefault(__webpack_require__(820));
+const core = __importStar(__webpack_require__(470));
 const unpackInputs = (inputs) => {
     const output = inputs.output
         ? {
@@ -2035,7 +2040,23 @@ const unpackInputs = (inputs) => {
 const formatDate = () => {
     return new Date().toISOString();
 };
-exports.createRun = (octokit, sha, ownership, inputs) => __awaiter(void 0, void 0, void 0, function* () {
+exports.createRun = (owner, repo, token, sha, ownership, inputs) => __awaiter(void 0, void 0, void 0, function* () {
+    const headers = {
+        'Content-Type': 'application/json',
+        Accept: 'application/vnd.github.antiope-preview+json',
+        Authorization: `Bearer ${token}`,
+        'User-Agent': 'eslint-action',
+    };
+    const body = Object.assign({ head_sha: sha, name: inputs.name, started_at: formatDate() }, unpackInputs(inputs));
+    core.debug(`Body: ${JSON.stringify(body)}`);
+    const response = (yield request_1.default(`https://api.github.com/repos/${owner}/${repo}/check-runs`, {
+        method: 'POST',
+        headers,
+    }, body));
+    core.debug(`Response: ${JSON.stringify(response)}`);
+    return response.data.id;
+});
+exports.oldCreateRun = (octokit, sha, ownership, inputs) => __awaiter(void 0, void 0, void 0, function* () {
     const payload = Object.assign(Object.assign(Object.assign({}, ownership), { head_sha: sha, name: inputs.name, started_at: formatDate() }), unpackInputs(inputs));
     const { data } = yield octokit.checks.create(payload);
     return data.id;
@@ -3603,7 +3624,7 @@ function run() {
                 }
                 else {
                     core.debug(`Create a Run`);
-                    const gitHubCheckRunId = yield checks_1.createRun(octokit, sha, ownership, checkRun);
+                    const gitHubCheckRunId = yield checks_1.createRun(github.context.repo.owner, github.context.repo.repo, inputs.runContext.token, sha, ownership, checkRun);
                     const foundCollectedCheckRun = inputs.globalContext.collections.find(thisCollectedCheckRun => thisCollectedCheckRun.collection === collection);
                     if (!foundCollectedCheckRun) {
                         throw Error(`Could not find collection named '${collection}'`);
@@ -9605,6 +9626,56 @@ function isexe (path, options, cb) {
 function sync (path, options) {
   return checkStat(fs.statSync(path), path, options)
 }
+
+
+/***/ }),
+
+/***/ 820:
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const https_1 = __importDefault(__webpack_require__(34));
+exports.request = (url, options, body) => __awaiter(void 0, void 0, void 0, function* () {
+    return new Promise((resolve, reject) => {
+        const req = https_1.default
+            .request(url, options, (res) => {
+            let data = '';
+            res.on('data', chunk => {
+                data += chunk;
+            });
+            res.on('end', () => {
+                if (res.statusCode || 200 >= 400) {
+                    reject(new Error(`Received status code ${res.statusCode}`));
+                }
+                else {
+                    resolve({ res, data: JSON.parse(data) });
+                }
+            });
+        })
+            .on('error', reject);
+        if (body) {
+            req.end(JSON.stringify(body));
+        }
+        else {
+            req.end();
+        }
+    });
+});
+exports.default = exports.request;
 
 
 /***/ }),

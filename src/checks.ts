@@ -1,5 +1,7 @@
 import {GitHub} from '@actions/github'
 import * as Inputs from './namespaces/Inputs'
+import request from './request'
+import * as core from '@actions/core'
 
 interface Ownership {
   owner: string
@@ -48,6 +50,44 @@ const formatDate = (): string => {
 }
 
 export const createRun = async (
+  owner: string,
+  repo: string,
+  token: string,
+  sha: string,
+  ownership: Ownership,
+  inputs: Inputs.CheckRun,
+): Promise<number> => {
+  const headers = {
+    'Content-Type': 'application/json',
+    Accept: 'application/vnd.github.antiope-preview+json',
+    Authorization: `Bearer ${token}`,
+    'User-Agent': 'eslint-action',
+  }
+
+  const body = {
+    head_sha: sha,
+    name: inputs.name,
+    started_at: formatDate(),
+    ...unpackInputs(inputs),
+  }
+
+  core.debug(`Body: ${JSON.stringify(body)}`)
+
+  const response: {data: {id: number}} = (await request(
+    `https://api.github.com/repos/${owner}/${repo}/check-runs`,
+    {
+      method: 'POST',
+      headers,
+    },
+    body,
+  )) as {data: {id: number}}
+
+  core.debug(`Response: ${JSON.stringify(response)}`)
+
+  return response.data.id
+}
+
+export const oldCreateRun = async (
   octokit: GitHub,
   sha: string,
   ownership: Ownership,
