@@ -14,7 +14,7 @@ export const request = async (
           data += chunk
         })
         res.on('end', () => {
-          if (res.statusCode || 200 >= 400) {
+          if ((res.statusCode || 400) >= 400) {
             reject(new Error(`Received status code ${res.statusCode}`))
           } else {
             resolve({res, data: JSON.parse(data)})
