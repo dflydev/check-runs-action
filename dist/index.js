@@ -2053,7 +2053,7 @@ exports.createRun = (owner, repo, token, sha, ownership, inputs) => __awaiter(vo
         method: 'POST',
         headers,
     }, body));
-    core.debug(`Response: ${JSON.stringify(response)}`);
+    core.debug(`Response: ${JSON.stringify(response.data)}`);
     return response.data.id;
 });
 exports.oldCreateRun = (octokit, sha, ownership, inputs) => __awaiter(void 0, void 0, void 0, function* () {

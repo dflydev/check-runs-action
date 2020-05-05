@@ -82,7 +82,7 @@ export const createRun = async (
     body,
   )) as {data: {id: number}}
 
-  core.debug(`Response: ${JSON.stringify(response)}`)
+  core.debug(`Response: ${JSON.stringify(response.data)}`)
 
   return response.data.id
 }
