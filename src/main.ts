@@ -44,9 +44,7 @@ async function run(): Promise<void> {
         core.debug(`Create a Run`)
 
         const gitHubCheckRunId = await createRun(
-          github.context.repo.owner,
-          github.context.repo.repo,
-          inputs.runContext.token,
+          octokit,
           sha,
           ownership,
           checkRun,
