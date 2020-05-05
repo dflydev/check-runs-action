@@ -3581,6 +3581,8 @@ exports.envVariableName = 'DFLYDEV_CHECK_RUN_COLLECTIONS';
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            core.debug(`GITHUB_SHA: ${process.env['GITHUB_SHA']} (${github.context.sha} from context)`);
+            core.debug(`GITHUB_EVENT_PATH: ${process.env['GITHUB_EVENT_PATH']}`);
             core.debug(`Parsing inputs`);
             const inputs = inputs_1.parseInputs(core.getInput);
             core.debug(JSON.stringify(inputs));
@@ -3591,6 +3593,7 @@ function run() {
                 repo: github.context.repo.repo,
             };
             const sha = github.context.sha;
+            core.debug(JSON.stringify(ownership));
             for (const collectedCheckRun of inputs.runContext.collectedCheckRuns) {
                 const collection = collectedCheckRun.collection;
                 const checkRun = collectedCheckRun.checkRun;

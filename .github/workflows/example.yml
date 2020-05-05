@@ -1,7 +1,11 @@
 name: Build Status
 on:
-  - push
-
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 jobs:
   build:
     name: Build

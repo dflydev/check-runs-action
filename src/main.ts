@@ -9,6 +9,12 @@ export const envVariableName = 'DFLYDEV_CHECK_RUN_COLLECTIONS'
 
 async function run(): Promise<void> {
   try {
+    core.debug(
+      `GITHUB_SHA: ${process.env['GITHUB_SHA']} (${github.context.sha} from context)`,
+    )
+
+    core.debug(`GITHUB_EVENT_PATH: ${process.env['GITHUB_EVENT_PATH']}`)
+
     core.debug(`Parsing inputs`)
     const inputs = parseInputs(core.getInput)
 
@@ -21,7 +27,10 @@ async function run(): Promise<void> {
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
     }
+
     const sha = github.context.sha
+
+    core.debug(JSON.stringify(ownership))
 
     for (const collectedCheckRun of inputs.runContext.collectedCheckRuns) {
       const collection = collectedCheckRun.collection
