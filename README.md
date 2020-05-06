@@ -1,6 +1,5 @@
 <h1 align="center">✅ GitHub Check Runs Action</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/dflydev/check-runs-action#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -9,6 +8,9 @@
   </a>
   <a href="https://github.com/dflydev/check-runs-action/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/dflydev/check-runs-action" />
+  </a>
+  <a href="https://twitter.com/dflydev" target="_blank">
+    <img alt="Twitter: dflydev" src="https://img.shields.io/twitter/follow/dflydev.svg?style=social" />
   </a>
   <a href="https://twitter.com/dflydev" target="_blank">
     <img alt="Twitter: dflydev" src="https://img.shields.io/twitter/follow/dflydev.svg?style=social" />
