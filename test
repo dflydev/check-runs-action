@@ -1,2 +1,0 @@
-const run = require('./src/main.ts')
-run()
