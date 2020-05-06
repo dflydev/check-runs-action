@@ -1,9 +1,6 @@
-name: 'GitHub Check Run Collections'
-description: 'Wrapper around the GitHub Checks API'
+name: 'GitHub Check Runs Action'
+description: 'Create and manage one or more GitHub check runs per job.'
 author: 'dflydev'
-branding:
-  icon: 'check-circle'
-  color: 'green'
 inputs:
   token:
     description: 'your GITHUB_TOKEN'
