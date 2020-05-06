@@ -12,8 +12,8 @@
   <a href="https://twitter.com/dflydev" target="_blank">
     <img alt="Twitter: dflydev" src="https://img.shields.io/twitter/follow/dflydev.svg?style=social" />
   </a>
-  <a href="https://twitter.com/dflydev" target="_blank">
-    <img alt="Twitter: dflydev" src="https://img.shields.io/twitter/follow/dflydev.svg?style=social" />
+  <a href="https://twitter.com/beausimensen" target="_blank">
+    <img alt="Twitter: beausimensen" src="https://img.shields.io/twitter/follow/beausimensen.svg?style=social" />
   </a>
 </p>
 
@@ -150,13 +150,13 @@ jobs:
 
 👥 **dflydev**
 
-* Website: [dflydev.com](https://dflydev.com)
+* Website: [dflydev.com](https://dflydev.com?utm_source=check-runs-action&utm_medium=readme-author)
 * Twitter: [@dflydev](https://twitter.com/dflydev)
 * Github: [@dflydev](https://github.com/dflydev)
 
 👤 **Beau Simensen**
 
-* Website: [beausimensen.com](https://beausimensen.com)
+* Website: [beausimensen.com](https://beausimensen.com?utm_source=check-runs-action&utm_medium=readme-author)
 * Twitter: [@dflydev](https://twitter.com/beausimensen)
 * Github: [@simensen](https://github.com/simensen)
 
