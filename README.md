@@ -178,6 +178,7 @@ Give a ⭐️ if this project helped you!
 Did this project save you time? Did this project increase your productivity? Did this project solve a problem for you? Did this project make your life easier? Please also consider donating or buying a license!
 
 * [Sponsor Beau Simensen on GitHub](https://github.com/sponsors/simensen)
+* [Sponsor dflydev on GitHub](https://github.com/sponsors/dflydev)
 * [Sponsor dflydev on OpenCollecctive](https://opencollective.com/dflydev)
 * [License or sponsor on Gitstore](https://enjoy.gitstore.app/repositories/dflydev/check-runs-action)
 
