@@ -1,6 +1,6 @@
 {
   "name": "check-runs-action",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Create and manage one or more GitHub Check Runs per job.",
   "main": "lib/main.js",
   "scripts": {
