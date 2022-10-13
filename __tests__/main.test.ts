@@ -1,14 +1,3 @@
-import * as cp from 'child_process'
-import * as path from 'path'
-import {
-  CheckRun,
-  Conclusion,
-  GlobalContext,
-  Status,
-} from '../src/namespaces/Inputs'
-
-const ip = path.join(__dirname, '..', 'lib', 'main.js')
-
 // eslint-disable-next-line @typescript-eslint/no-require-imports,@typescript-eslint/no-var-requires
 const action = require(ip)
 
